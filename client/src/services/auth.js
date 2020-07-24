@@ -1,15 +1,15 @@
 import axios from 'axios';
 
-// const signup = (username, password) => {
-//   return axios
-//     .post('/api/auth/signup', { email, password,firstName,lastName,address })
-//     .then(response => {
-//       return response.data;
-//     })
-//     .catch(err => {
-//       return err.response.data;
-//     });
-// };
+const signup = (email, password,firstName,lastName,address) => {
+  return axios
+    .post('/api/auth/signup', { email, password,firstName,lastName,address })
+    .then(response => {
+      return response.data;
+    })
+    .catch(err => {
+      return err.response.data;
+    });
+};
 
 const login = (email, password) => {
   return axios
