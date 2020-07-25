@@ -59,25 +59,28 @@ router.post('/login', (req, res) => {
       if (err) {
         return res.status(500).json({ message: 'Error while attempting to login' });
       }
-      return res.json(user);
+      // create a token using user name and password vaild for 2 hours
+      let token_payload = {name: user[0].name, password: user[0].password};
+      let token = jwt.sign(token_payload, "jwt_secret_password", { expiresIn: '2h' });
+      let response = { message: 'Token Created, Authentication Successful!', token: token };
+      return res.status(200).json(user,response);
     });
   })(req, res);
 });
 
-router.get(
-  '/api/auth/google',
-  passport.authenticate('google', {
-    scope: ['https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'],
-  })
-);
+router.get('/google',
+  passport.authenticate('google', { 
+    scope: [
+        'https://www.googleapis.com/auth/userinfo.profile',
+        'https://www.googleapis.com/auth/userinfo.email'
+    ] }
+));
 
-router.get(
-  '/api/auth/google/callback',
-  passport.authenticate('google', {
-    successRedirect: 'http://localhost:3000',
-    failureRedirect: '/login',
-  })
-);
+router.get( '/callback', 
+    passport.authenticate( 'google', { 
+        successRedirect: 'http://localhost:3000',
+        failureRedirect: '/login'
+}));
 
 router.delete('/logout', (req, res) => {
   req.logout();
