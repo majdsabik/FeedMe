@@ -1,19 +1,19 @@
 import axios from 'axios';
 
-// const signup = (username, password) => {
-//   return axios
-//     .post('/api/auth/signup', { email, password,firstName,lastName,address })
-//     .then(response => {
-//       return response.data;
-//     })
-//     .catch(err => {
-//       return err.response.data;
-//     });
-// };
+const signup = (firstName, lastName, email, password, address, placeId) => {
+  return axios
+    .post('/signup', { firstName, lastName, email, password, address, placeId })
+    .then(response => {
+      return response.data;
+    })
+    .catch(err => {
+      return err.response.data;
+    });
+};
 
 const login = (email, password) => {
   return axios
-    .post('/api/auth/login', { email, password })
+    .post('/login', { email, password })
     .then(response => {
       return response.data;
     })
@@ -21,11 +21,10 @@ const login = (email, password) => {
       return err.response.data;
     });
 };
-
 
 const logout = () => {
   return axios
-    .delete('/api/auth/logout')
+    .delete('/logout')
     .then(response => {
       return response.data;
     })
@@ -34,4 +33,4 @@ const logout = () => {
     });
 };
 
-export {  login, logout   }
+export { signup, login, logout };
