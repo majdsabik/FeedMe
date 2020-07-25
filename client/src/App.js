@@ -5,6 +5,7 @@ import { googleLogin as Google } from './services/auth';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import { Route, Redirect } from 'react-router-dom';
+import EmployeeLogin from './components/employeeLogin'
 
 export default class App extends React.Component {
   state = {
@@ -28,6 +29,12 @@ export default class App extends React.Component {
           path='/login'
           render={props => <Login setUser={this.setUser} {...props} />}
         />
+          <Route
+          exact
+          path='/employee/login'
+          render={props => <EmployeeLogin setUser={this.setUser} {...props} />}
+        />
+
       </div>
     );
   };

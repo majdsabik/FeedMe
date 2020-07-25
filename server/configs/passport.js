@@ -2,6 +2,7 @@ const User = require('../models/Customer');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt'); // !!!
 const passport = require('passport');
+const Employee = require('../models/Employee');
 var GoogleStrategy = require('passport-google-oauth2').Strategy;
 
 passport.serializeUser((loggedInUser, cb) => {
@@ -53,7 +54,7 @@ passport.use(
   )
 );
 
-passport.use(
+passport.use('customer',
   new LocalStrategy((email, password, next) => {
     User.findOne({ email }, (err, foundUser) => {
       if (err) {
@@ -62,6 +63,32 @@ passport.use(
       }
 
       if (!foundUser) {
+        next(null, false, { message: 'Incorrect credentials' });
+        return;
+      }
+
+      if (!bcrypt.compareSync(password, foundUser.password)) {
+        next(null, false, { message: 'Incorrect credentials' });
+        return;
+      }
+
+      next(null, foundUser);
+    });
+  })
+);
+
+passport.use('employee',
+  new LocalStrategy((username, password, next) => {
+    console.log("I am at passport employee")
+    console.log(username,password)
+    Employee.findOne({ userName:username }, (err, foundUser) => {
+      if (err) {
+        next(err);
+        return;
+      }
+
+      if (!foundUser) {
+        console.log("I am here");
         next(null, false, { message: 'Incorrect credentials' });
         return;
       }
