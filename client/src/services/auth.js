@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const signup = (firstName, lastName, email, password, address, placeId) => {
   return axios
-    .post('/signup', { firstName, lastName, email, password, address, placeId })
+    .post('/api/auth/signup', { firstName, lastName, email, password, address, placeId })
     .then(response => {
       return response.data;
     })
@@ -14,7 +14,7 @@ const signup = (firstName, lastName, email, password, address, placeId) => {
 
 const login = (email, password) => {
   return axios
-    .post('/login', { email, password })
+    .post('/api/auth/login', { email, password })
     .then(response => {
       localStorage.setItem('x-access-token', response.data.token);
       localStorage.setItem('x-access-token-expiration', Date.now() + 2 * 60 * 60 * 1000);
@@ -28,7 +28,7 @@ const login = (email, password) => {
 
 const logout = () => {
   return axios
-    .delete('/logout')
+    .delete('/api/auth/logout')
     .then(response => {
       return response.data;
     })

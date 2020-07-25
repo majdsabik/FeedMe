@@ -4,7 +4,7 @@ const router = express.Router();
 const Order = require('../models/Order');
 const MenuItem = require('../models/MenuItem');
 
-app.post('/', (req, res) => {
+router.post('/', (req, res) => {
     let menu = [], id = null;
     let cart = JSON.parse(req.body.cart);
     if (!cart) return res.json(menu)
@@ -19,17 +19,17 @@ app.post('/', (req, res) => {
     return res.json(menu);
   });
 
-app.post('/checkout', (req,res) => {
-    let cart = req.body.cart;
-    cart.forEach(item => {
-        MenuItem.find({itemNo:item.key}).then(
-            founditem => {
-                Order.create({})
-            }
-        )
+// app.post('/checkout', (req,res) => {
+//     let cart = req.body.cart;
+//     cart.forEach(item => {
+//         MenuItem.find({itemNo:item.key}).then(
+//             founditem => {
+//                 Order.create({})
+//             }
+//         )
 
-    })
-})
+//     })
+// })
 
 
 

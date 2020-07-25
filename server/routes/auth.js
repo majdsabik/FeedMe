@@ -76,7 +76,7 @@ router.get('/google',
     ] }
 ));
 
-router.get( '/callback', 
+router.get('/callback', 
     passport.authenticate( 'google', { 
         successRedirect: 'http://localhost:3000',
         failureRedirect: '/login'
