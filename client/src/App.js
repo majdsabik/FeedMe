@@ -1,18 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import { googleLogin as Google } from './services/auth';
+import Login from './components/Login';
+import Signup from './components/Signup';
+import { Route, Redirect } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <a href='http://localhost:5555/api/auth/google'>
-              
-      <button className="auth-btn sort-button">Sign up with Google</button>
-      </a>
-    </div>
-  );
+export default class App extends React.Component {
+  state = {
+    user: this.props.user,
+  };
+  setUser = user => {
+    this.setState({
+      user: user,
+    });
+  };
+  render = () => {
+    return (
+      <div className='App'>
+        <Route
+          exact
+          path='/signup'
+          render={props => <Signup setUser={this.setUser} {...props} />}
+        />
+        <Route
+          exact
+          path='/login'
+          render={props => <Login setUser={this.setUser} {...props} />}
+        />
+      </div>
+    );
+  };
 }
-
-export default App;

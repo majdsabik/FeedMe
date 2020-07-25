@@ -1,8 +1,9 @@
 import axios from 'axios';
 
-const signup = (email, password,firstName,lastName,address) => {
+
+const signup = (firstName, lastName, email, password, address, placeId) => {
   return axios
-    .post('/api/auth/signup', { email, password,firstName,lastName,address })
+    .post('/signup', { firstName, lastName, email, password, address, placeId })
     .then(response => {
       return response.data;
     })
@@ -13,7 +14,7 @@ const signup = (email, password,firstName,lastName,address) => {
 
 const login = (email, password) => {
   return axios
-    .post('/api/auth/login', { email, password })
+    .post('/login', { email, password })
     .then(response => {
       localStorage.setItem('x-access-token', response.data.token);
       localStorage.setItem('x-access-token-expiration', Date.now() + 2 * 60 * 60 * 1000);
@@ -25,10 +26,9 @@ const login = (email, password) => {
     });
 };
 
-
 const logout = () => {
   return axios
-    .delete('/api/auth/logout')
+    .delete('/logout')
     .then(response => {
       return response.data;
     })
@@ -37,4 +37,4 @@ const logout = () => {
     });
 };
 
-export {  login, logout   }
+export { signup, login, logout };
