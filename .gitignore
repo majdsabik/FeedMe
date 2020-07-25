@@ -19,5 +19,7 @@ yarn-error.log*
 /server/.env
 /server/node_modules
 /server/.vscode
+/client/.env
 /client/node_modules
+/client/.vscode
 **/.DS_Store
