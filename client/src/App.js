@@ -5,7 +5,9 @@ import { googleLogin as Google } from './services/auth';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import { Route, Redirect } from 'react-router-dom';
-import EmployeeLogin from './components/employeeLogin'
+import EmployeeLogin from './components/employeeLogin';
+import Menu from './components/Menu';
+import Cart from './components/Cart'
 
 export default class App extends React.Component {
   state = {
@@ -34,6 +36,17 @@ export default class App extends React.Component {
           path='/employee/login'
           render={props => <EmployeeLogin setUser={this.setUser} {...props} />}
         />
+        <Route
+          exact
+          path='/menu'
+          component={Menu}
+        />
+          <Route
+          exact
+          path='/cart'
+          component={Cart}
+        />
+        
 
       </div>
     );
