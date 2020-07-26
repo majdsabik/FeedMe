@@ -2,25 +2,32 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import CartItem from './CartItem';
 import { getCartData } from '../services/repository';
+import SubOrder from '../../../server/models/SubOrder';
 
-export default class RestaurantLandingPage extends Component {
+export default class OrdersView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      menu: [],
-      total: 0,
+      orders: [],
+      prefix: 
     };
   }
 
   componentWillMount() {
-    let cart = localStorage.getItem('cart');
-    if (!cart) return;
-    getCartData(cart).then(menu => {
-      let total = 0;
-      for (var i = 0; i < menu.length; i++) {
-        total += menu[i].price * menu[i].qty;
-      }
-      this.setState({ menu, total });
+    SubOrder.find(user._id).then(foundUser => {
+      Activity.find()
+        .populate('owner')
+        .populate('comments')
+        .populate({ path: 'comments', populate: { path: 'owner' } })
+        .then(activities => {
+          activities = activities.filter(activity => {
+            return user.friends.includes(activity.owner._id);
+          });
+          res.render('user/activities', { activities });
+        })
+        .catch(err => {
+          console.log(err);
+        });
     });
   }
 

@@ -13,10 +13,7 @@ const subOrderSchema = new Schema({
     default: 'placed',
   },
   items: [String],
-  restaurant: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'Restaurant',
-  },
+  restaurantPrefix: String,
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 });

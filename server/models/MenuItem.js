@@ -8,10 +8,7 @@ const menuItemSchema = new Schema({
   price: Number,
   category: Array,
   prepTime: Number,
-  restaurant: {
-    type: Schema.Types.ObjectId,
-    ref: 'Restaurant',
-  },
+  restaurantPrefix: String,
   imgName: String,
   imgPath: String,
 });
