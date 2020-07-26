@@ -4,9 +4,7 @@ const { Schema, model } = mongoose;
 const customerSchema = new Schema({
   firstName: String,
   lastName: String,
-  email: {type: String,
-    unique: true
-  },
+  email: { type: String, unique: true },
   googleId: String,
   password: String,
   address: String,
@@ -15,9 +13,9 @@ const customerSchema = new Schema({
   orders: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Order'
-    }
-  ]
+      ref: 'Order',
+    },
+  ],
 });
 
 const Customer = mongoose.model('Customer', customerSchema);

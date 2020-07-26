@@ -6,7 +6,7 @@ const restaurantSchema = new Schema({
   prefix: String,
   description: String,
   imgName: String,
-  imgPath: String
+  imgPath: String,
 });
 
 const Restaurant = mongoose.model('Restaurant', restaurantSchema);
