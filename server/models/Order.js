@@ -3,26 +3,24 @@ const { Schema, model } = mongoose;
 
 const orderSchema = new Schema({
   orderId: {
-    type: Number,
-    unique: true
+    type: String,
+    unique: true,
   },
-  customer: 
-  {
+  customer: {
     type: Schema.Types.ObjectId,
-    ref: 'Customer'
+    ref: 'Customer',
   },
   totPrice: Number,
   status: {
     type: String,
     enum: ['placed', 'inPreparation', 'outForDelivery'],
-    default: 'placed'
+    default: 'placed',
   },
   scheduledDelivery: Date,
-  items: Object,
-  subOrders: Array
-},
-{
-  timestamps: { createdAt: "createdAt", updatedAt: "updatedAt" }
+  items: [String],
+  subOrders: [String],
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
 });
 
 const Order = mongoose.model('Order', orderSchema);
