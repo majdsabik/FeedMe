@@ -14,28 +14,28 @@ const SubOrders = [
     subTotal: 1,
     status: 'placed',
     items: ['001', '002'],
-    restaurant: '5f1d3ada31b5db0465f2e83f',
+    restaurantPrefix: 'RIC',
   },
   {
     subOrderId: 'RIC002',
     subTotal: 2,
     status: 'inPreparation',
     items: ['003', '004'],
-    restaurant: '5f1d3ada31b5db0465f2e83f',
+    restaurantPrefix: 'RIC',
   },
   {
     subOrderId: 'TDA001',
     subTotal: 3,
     status: 'placed',
     items: ['005', '006'],
-    restaurant: '5f1d3ada31b5db0465f2e840',
+    restaurantPrefix: 'TDA',
   },
   {
     subOrderId: 'TDA002',
     subTotal: 4,
     status: 'inPreparation',
     items: ['007', '008'],
-    restaurant: '5f1d3ada31b5db0465f2e840',
+    restaurantPrefix: 'TDA',
   },
 ];
 

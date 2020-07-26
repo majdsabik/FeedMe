@@ -48,7 +48,7 @@ class Map extends Component {
     function callback(response, status) {
       // See Parsing the Results for
       // the basics of a callback function.
-      if (status == 'OK') {
+      if (status === 'OK') {
         var origins = response.originAddresses;
         var destinations = response.destinationAddresses;
 

@@ -2,7 +2,10 @@ const mongoose = require('mongoose');
 const Employee = require('../models/Employee');
 
 mongoose.connect('mongodb://localhost/FeedMe', {
+  useCreateIndex: true,
   useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
 });
 
 const employees = [
@@ -12,7 +15,7 @@ const employees = [
     email: 'test@test.com',
   },
   {
-    userName: 'majd',
+    userName: 'Majd',
     password: '12345678',
     email: 'test1@test.com',
   },
