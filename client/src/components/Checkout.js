@@ -12,6 +12,14 @@ export default class Checkout extends React.Component {
     };
   }
 
+  checkout() {
+    placeOrder(this.props.menu)
+      .then((response) => {
+        this.props.history.push("/menu");
+      })
+      .catch((err) => console.log(err));
+  }
+
   componentDidMount() {
     let cart = localStorage.getItem("cart");
     if (!cart) return;
@@ -65,7 +73,7 @@ export default class Checkout extends React.Component {
         {menu.length ? (
           <button
             className="btn btn-success float-right"
-            onClick={() => placeOrder(menu)}
+            onClick={() => this.checkout()}
           >
             Confirm
           </button>

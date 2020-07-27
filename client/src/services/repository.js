@@ -29,7 +29,7 @@ export function placeOrder(menu) {
     .post("/api/cart/order", { menu })
     .then((response) => {
       console.log(response.data);
-
+      localStorage.removeItem("cart");
       // response.data)
     })
     .catch((err) => {
