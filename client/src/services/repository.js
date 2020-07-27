@@ -5,7 +5,7 @@ const BASE_URL = 'http://localhost:5555';
 
 export function getCartData(cart){
     return axios
-      .post('/api/menu',{cart})
+      .post('/api/cart',{cart})
       .then(response => response.data)
       .catch(err => {
         console.log(err);

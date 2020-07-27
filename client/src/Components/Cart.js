@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Children } from 'react';
 import { Link } from 'react-router-dom';
 import CartItem from './CartItem';
 import {getCartData} from '../services/repository'
@@ -15,12 +15,12 @@ export default class Cart extends React.Component {
 	componentWillMount() {
 		let cart = localStorage.getItem('cart');
 		if (!cart) return; 
-		getCartData(cart).then((menu) => {
+		getCartData(cart).then((cartItem) => {
 			let total = 0;
-			for (var i = 0; i < menu.length; i++) {
-				total += menu[i].price * menu[i].qty;
+			for (var i = 0; i < cartItem.length; i++) {
+				total += cartItem[i].price * cartItem[i].qty;
 			}
-	    	this.setState({ menu, total });
+	    	this.setState({ menu:cartItem, total });
 	    });
 	}
 	
@@ -28,7 +28,7 @@ export default class Cart extends React.Component {
 	removeFromCart = (menuItem) => {
 		let menu = this.state.menu.filter((item) => item.id !== menuItem.id);
 		let cart = JSON.parse(localStorage.getItem('cart'));
-		delete cart[menuItem.id.toString()];
+		delete cart[menuItem.itemNo];
 		localStorage.setItem('cart', JSON.stringify(cart));
 		let total = this.state.total - (menuItem.qty * menuItem.price) 
 		this.setState({menu, total});

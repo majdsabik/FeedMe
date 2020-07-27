@@ -55,20 +55,20 @@ passport.use(
 );
 
 passport.use('customer',
-  new LocalStrategy((email, password, next) => {
-    User.findOne({ email }, (err, foundUser) => {
+  new LocalStrategy((username, password, next) => {
+    User.findOne({ email:username }, (err, foundUser) => {
       if (err) {
         next(err);
         return;
       }
 
       if (!foundUser) {
-        next(null, false, { message: 'Incorrect credentials' });
+        next(null, false, { message: 'Incorrect email' });
         return;
       }
 
       if (!bcrypt.compareSync(password, foundUser.password)) {
-        next(null, false, { message: 'Incorrect credentials' });
+        next(null, false, { message: 'Incorrect password' });
         return;
       }
 

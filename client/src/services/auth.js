@@ -12,16 +12,14 @@ const signup = (firstName, lastName, email, password, address, placeId) => {
     });
 };
 
-const login = (email, password) => {
+const login = (username, password) => {
   return axios
-    .post('/api/auth/login', { email, password })
+    .post('/api/auth/login', { username, password })
     .then(response => {
-      // localStorage.setItem('x-access-token', response.data.token);
-      // localStorage.setItem('x-access-token-expiration', Date.now() + 2 * 60 * 60 * 1000);
+      console.log(response)
       return response.data;
     })
     .catch(err => {
-      Promise.reject('Authentication Failed!');
       return err.response.data;
     });
 };
@@ -41,8 +39,6 @@ const employeeLogin = (username, password) => {
   return axios
     .post('/api/employee/auth/login', { username, password })
     .then(response => {
-      // localStorage.setItem('x-access-token', response.data.token);
-      // localStorage.setItem('x-access-token-expiration', Date.now() + 2 * 60 * 60 * 1000);
       return response.data;
     })
     .catch(err => {

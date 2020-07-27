@@ -4,14 +4,14 @@ import { login } from '../services/auth';
 
 export default class Login extends Component {
   state = {
-    email: '',
+    username: '',
     password: '',
     message: '',
   };
 
   handleChange = event => {
     const { name, value } = event.target;
-
+    console.log(value)
     this.setState({
       [name]: value,
     });
@@ -20,13 +20,13 @@ export default class Login extends Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    const { email, password } = this.state;
+    const { username, password } = this.state;
 
-    login(email, password).then(data => {
+    login(username, password).then(data => {
       if (data.message) {
         this.setState({
           message: data.message,
-          email: '',
+          username: '',
           password: '',
         });
       } else {
@@ -42,8 +42,8 @@ export default class Login extends Component {
         <h2>Login</h2>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
-            <Form.Label htmlFor='email'>E-Mail: </Form.Label>
-            <Form.Control type='text' name='email' value={this.state.email} onChange={this.handleChange} id='email' />
+            <Form.Label htmlFor='username'>E-Mail: </Form.Label>
+            <Form.Control type='text' name='username' value={this.state.email} onChange={this.handleChange} id='username' />
           </Form.Group>
           <Form.Group>
             <Form.Label htmlFor='password'>Password: </Form.Label>

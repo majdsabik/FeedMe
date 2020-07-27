@@ -7,16 +7,22 @@ const MenuItem = require('../models/MenuItem');
 router.post('/', (req, res) => {
     let menu = [], id = null;
     let cart = JSON.parse(req.body.cart);
-    if (!cart) return res.json(menu)
-    for (var i = 0; i < data.menu.length; i++) {
-      id = data.menu[i].id.toString();
-      if (cart.hasOwnProperty(id)) {
-        data.menu[i].qty = cart[id]
-        menu.push(data.menu[i]);
-      }
-    }
     console.log(cart)
-    return res.json(menu);
+    if (!cart) return res.json(menu)
+    MenuItem.find().then(data => {
+      console.log(data)
+      for (var i = 0; i < data.length; i++) {
+        id = data[i].itemNo;
+        console.log(id)
+        if (cart.hasOwnProperty(id)) {
+          data[i].qty = cart[id]
+          menu.push(data[i]);
+        }
+      }
+      return res.json(menu);
+    }).catch(err => {
+      console.log(err)
+    })
   });
 
 // app.post('/checkout', (req,res) => {

@@ -6,7 +6,6 @@ const passport = require('passport');
 
 router.post('/login', (req, res) => {
   passport.authenticate('employee', (err, user) => {
-    console.log("hello");
     if (err) {
       return res.status(500).json({ message: 'Error while authenticating' });
     }

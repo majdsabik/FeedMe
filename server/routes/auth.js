@@ -48,7 +48,6 @@ router.post('/signup', (req, res) => {
 
 router.post('/login', (req, res) => {
   passport.authenticate('customer', (err, user) => {
-    console.log(user);
     if (err) {
       return res.status(500).json({ message: 'Error while authenticating' });
     }
@@ -59,11 +58,7 @@ router.post('/login', (req, res) => {
       if (err) {
         return res.status(500).json({ message: 'Error while attempting to login' });
       }
-      // create a token using user name and password vaild for 2 hours
-      let token_payload = {name: user[0].name, password: user[0].password};
-      let token = jwt.sign(token_payload, "jwt_secret_password", { expiresIn: '2h' });
-      let response = { message: 'Token Created, Authentication Successful!', token: token };
-      return res.status(200).json(user,response);
+      return res.status(200).json(user);
     });
   })(req, res);
 });
