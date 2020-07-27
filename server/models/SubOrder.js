@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 
 const subOrderSchema = new Schema({
@@ -9,8 +9,8 @@ const subOrderSchema = new Schema({
   subTotal: Number,
   status: {
     type: String,
-    enum: ['placed', 'inPreparation', 'outForDelivery'],
-    default: 'placed',
+    enum: ["placed", "inPreparation", "outForDelivery"],
+    default: "placed",
   },
   items: [String],
   restaurantPrefix: String,
@@ -18,6 +18,6 @@ const subOrderSchema = new Schema({
   updatedAt: { type: Date, default: Date.now },
 });
 
-const SubOrder = mongoose.model('SubOrder', subOrderSchema);
+const SubOrder = mongoose.model("SubOrder", subOrderSchema);
 
 module.exports = SubOrder;
