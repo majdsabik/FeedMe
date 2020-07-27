@@ -4,23 +4,18 @@ const { Schema, model } = mongoose;
 const subOrderSchema = new Schema({
   subOrderId: {
     type: String,
-    unique: true
+    unique: true,
   },
   subTotal: Number,
   status: {
     type: String,
     enum: ['placed', 'inPreparation', 'outForDelivery'],
-    default: 'placed'
+    default: 'placed',
   },
-  items: Object,
-  restaurant: 
-  {
-    type: Schema.Types.ObjectId,
-    ref: 'Restaurant'
-  }
-},
-{
-  timestamps: { createdAt: "createdAt", updatedAt: "updatedAt" }
+  items: [String],
+  restaurantPrefix: String,
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
 });
 
 const SubOrder = mongoose.model('SubOrder', subOrderSchema);
