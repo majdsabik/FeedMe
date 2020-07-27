@@ -24,12 +24,12 @@ export function getSubOrders() {
   });
 }
 
-export function placeOrder(menu) {
+export function placeOrder(order) {
   return axios
-    .post("/api/cart/order", { menu })
+    .post("/api/cart/order", { order })
     .then((response) => {
       console.log(response.data);
-      localStorage.removeItem("cart");
+
       // response.data)
     })
     .catch((err) => {
