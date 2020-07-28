@@ -68,8 +68,8 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/cart', require('./routes/cart'));
-app.use('/api/employee/auth/', require('./routes/employeeauth'))
-app.use('/api/menu',require('./routes/menuItems'))
-app.use('/api/suborders',require('./routes/subOrders'))
+app.use('/api/employee/auth/', require('./routes/employeeauth'));
+app.use('/api/menu', require('./routes/menuItems'));
+app.use('/api/suborders', require('./routes/subOrders'));
 
 module.exports = app;
