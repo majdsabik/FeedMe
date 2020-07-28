@@ -11,31 +11,22 @@ const BASE_URL = "http://localhost:5555";
     });
 } */
 
-<<<<<<< HEAD
-export function getProducts() {
-  return axios.get("/api/menu").then((response) => {
-=======
 export function getCartData(cart) {
   return axios
-    .post('/api/cart', { cart })
-    .then(response => response.data)
-    .catch(err => {
+    .post("/api/cart", { cart })
+    .then((response) => response.data)
+    .catch((err) => {
       console.log(err);
     });
 }
 
 export function getProducts() {
-  return axios.get('/api/menu').then(response => {
->>>>>>> ba489b3c780d3053e2d16c3268c57c72561600dc
+  return axios.get("/api/menu").then((response) => {
     console.log(response.data);
     return response.data;
   });
 }
 
-<<<<<<< HEAD
-export function getSubOrders() {
-  return axios.get("/api/suborders").then((response) => {
-=======
 // export function placeOrder(cart){
 //     return axios
 //     .post('/api/order',{cart})
@@ -43,8 +34,7 @@ export function getSubOrders() {
 //         response.data;
 
 export function getSubOrders(restaurantPrefix) {
-  return axios.post('/api/suborders', { restaurantPrefix }).then(response => {
->>>>>>> ba489b3c780d3053e2d16c3268c57c72561600dc
+  return axios.post("/api/suborders", { restaurantPrefix }).then((response) => {
     return response.data;
   });
 }
