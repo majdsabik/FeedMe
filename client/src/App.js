@@ -9,6 +9,7 @@ import Menu from "./components/Menu";
 import Cart from "./components/Cart";
 import OrdersView from "./components/OrdersView";
 import Checkout from "./components/Checkout";
+import { SearchLocationInput } from "./SearchLocationInput";
 
 export default class App extends React.Component {
   state = {

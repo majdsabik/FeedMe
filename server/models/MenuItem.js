@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 
 const menuItemSchema = new Schema({
@@ -13,6 +13,6 @@ const menuItemSchema = new Schema({
   imgPath: String,
 });
 
-const MenuItem = mongoose.model('MenuItem', menuItemSchema);
+const MenuItem = mongoose.model("MenuItem", menuItemSchema);
 
 module.exports = MenuItem;
