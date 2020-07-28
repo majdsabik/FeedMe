@@ -3,6 +3,7 @@ const app = require("../app");
 const router = express.Router();
 const Order = require("../models/Order");
 const MenuItem = require("../models/MenuItem");
+const SubOrder = require("../models/SubOrder");
 
 router.post("/", (req, res) => {
   let menu = [],
@@ -19,8 +20,12 @@ router.post("/", (req, res) => {
 });
 
 router.post("/order", (req, res) => {
-  console.log(req.body);
-  let items = req.body;
+  let items = req.body.order;
+  let user = req.user;
+  console.log(items);
+  items.map((el) => {
+    console.log(el.restaurant);
+  });
   res.json(true);
 });
 

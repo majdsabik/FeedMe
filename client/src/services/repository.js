@@ -29,8 +29,6 @@ export function placeOrder(order) {
     .post("/api/cart/order", { order })
     .then((response) => {
       console.log(response.data);
-
-      // response.data)
     })
     .catch((err) => {
       console.log(err);
