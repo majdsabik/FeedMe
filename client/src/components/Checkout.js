@@ -16,7 +16,6 @@ export default class Checkout extends React.Component {
     let order = this.state.menu;
     placeOrder(order)
       .then((response) => {
-        localStorage.removeItem("cart");
         this.props.history.push("/menu");
       })
       .catch((err) => console.log(err));

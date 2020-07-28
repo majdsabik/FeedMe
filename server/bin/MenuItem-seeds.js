@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 const MenuItem = require('../models/MenuItem');
-
+​
 mongoose.connect('mongodb://localhost/FeedMe', {
   useCreateIndex: true,
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
 });
-
+​
 const menu = [
   {
     itemNo: '001',
@@ -16,7 +16,7 @@ const menu = [
     price: 7.5,
     category: ['lunch', 'thai', 'fit', 'salad'],
     prepTime: 8,
-    restaurant: 'RIC',
+    restaurantPrefix: 'RIC',
   },
   {
     itemNo: '002',
@@ -25,7 +25,7 @@ const menu = [
     price: 9,
     category: ['lunch', 'thai', 'spicy', 'seafood'],
     prepTime: 15,
-    restaurant: 'RIC',
+    restaurantPrefix: 'RIC',
   },
   {
     itemNo: '003',
@@ -34,7 +34,7 @@ const menu = [
     price: 9,
     category: ['lunch', 'thai', 'spicy', 'chicken'],
     prepTime: 15,
-    restaurant: 'RIC',
+    restaurantPrefix: 'RIC',
   },
   {
     itemNo: '004',
@@ -43,7 +43,7 @@ const menu = [
     price: 11,
     category: ['lunch', 'thai', 'fish'],
     prepTime: 15,
-    restaurant: 'RIC',
+    restaurantPrefix: 'RIC',
   },
   {
     itemNo: '005',
@@ -52,7 +52,7 @@ const menu = [
     price: 10.5,
     category: ['lunch', 'dinner', 'indian', 'fish'],
     prepTime: 15,
-    restaurant: 'TDA',
+    restaurantPrefix: 'TDA',
   },
   {
     itemNo: '006',
@@ -61,7 +61,7 @@ const menu = [
     price: 12,
     category: ['lunch', 'dinner', 'indian', 'vegetarian'],
     prepTime: 12,
-    restaurant: 'TDA',
+    restaurantPrefix: 'TDA',
   },
   {
     itemNo: '007',
@@ -70,7 +70,7 @@ const menu = [
     price: 15,
     category: ['lunch', 'dinner', 'indian', 'seafood'],
     prepTime: 15,
-    restaurant: 'TDA',
+    restaurantPrefix: 'TDA',
   },
   {
     itemNo: '008',
@@ -79,10 +79,10 @@ const menu = [
     price: 10.5,
     category: ['lunch', 'dinner', 'indian', 'lamb'],
     prepTime: 15,
-    restaurant: 'TDA',
+    restaurantPrefix: 'TDA',
   },
 ];
-
+​
 MenuItem.insertMany(menu)
   .then(menu => {
     console.log('Success! Added ' + menu.length + ' dishes to the database');
