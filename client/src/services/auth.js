@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 const signup = (firstName, lastName, email, password, address, placeId) => {
   return axios
     .post('/api/auth/signup', { firstName, lastName, email, password, address, placeId })
@@ -15,6 +16,7 @@ const login = (username, password) => {
   return axios
     .post('/api/auth/login', { username, password })
     .then(response => {
+      console.log(response)
       return response.data;
     })
     .catch(err => {

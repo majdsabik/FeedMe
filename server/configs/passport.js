@@ -54,10 +54,9 @@ passport.use(
   )
 );
 
-passport.use(
-  'customer',
+passport.use('customer',
   new LocalStrategy((username, password, next) => {
-    User.findOne({ email: username }, (err, foundUser) => {
+    User.findOne({ email:username }, (err, foundUser) => {
       if (err) {
         next(err);
         return;
@@ -78,17 +77,18 @@ passport.use(
   })
 );
 
-passport.use(
-  'employee',
+passport.use('employee',
   new LocalStrategy((username, password, next) => {
-    Employee.findOne({ userName: username }, (err, foundUser) => {
+    console.log("I am at passport employee")
+    console.log(username,password)
+    Employee.findOne({ userName:username }, (err, foundUser) => {
       if (err) {
         next(err);
         return;
       }
 
       if (!foundUser) {
-        console.log('I am here');
+        console.log("I am here");
         next(null, false, { message: 'Incorrect credentials' });
         return;
       }

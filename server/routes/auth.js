@@ -47,7 +47,6 @@ router.post('/signup', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-  console.log('req: ', req)
   passport.authenticate('customer', (err, user) => {
     if (err) {
       return res.status(500).json({ message: 'Error while authenticating' });
@@ -64,20 +63,19 @@ router.post('/login', (req, res) => {
   })(req, res);
 });
 
-router.get(
-  '/google',
-  passport.authenticate('google', {
-    scope: ['https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'],
-  })
-);
+router.get('/google',
+  passport.authenticate('google', { 
+    scope: [
+        'https://www.googleapis.com/auth/userinfo.profile',
+        'https://www.googleapis.com/auth/userinfo.email'
+    ] }
+));
 
-router.get(
-  '/callback',
-  passport.authenticate('google', {
-    successRedirect: 'http://localhost:3000',
-    failureRedirect: '/login',
-  })
-);
+router.get('/callback', 
+    passport.authenticate( 'google', { 
+        successRedirect: 'http://localhost:3000',
+        failureRedirect: '/login'
+}));
 
 router.delete('/logout', (req, res) => {
   req.logout();

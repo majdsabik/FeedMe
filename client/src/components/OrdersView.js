@@ -3,13 +3,16 @@ import { getSubOrders } from '../services/repository';
 import { v4 as uuid } from 'uuid';
 
 export default class OrdersView extends React.Component {
-  state = {
-    orders: [],
-    user: this.props.user,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      orders: [],
+    };
+  }
 
   componentWillMount() {
-    getSubOrders(this.state.user.restaurantPrefix).then(orders => {
+    getSubOrders().then(orders => {
+      console.log(orders);
       this.setState({ orders });
     });
   }
