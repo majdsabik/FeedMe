@@ -1,33 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
-import axios from 'axios';
-<<<<<<< HEAD
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import "./index.css";
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
+import axios from "axios";
 
-axios.get('/api/auth/loggedin')
-  .then(response => {
-    const user = response.data;
-    ReactDOM.render(
-      <BrowserRouter>
-        <App user={user} />
-      </BrowserRouter>,
-      document.getElementById('root')
-    );
-  })
-
-=======
->>>>>>> ba489b3c780d3053e2d16c3268c57c72561600dc
-
-axios.get('/api/auth/loggedin').then(response => {
+axios.get("/api/auth/loggedin").then((response) => {
   const user = response.data;
   ReactDOM.render(
     <BrowserRouter>
       <App user={user} />
     </BrowserRouter>,
-    document.getElementById('root')
+    document.getElementById("root")
   );
 });
 
