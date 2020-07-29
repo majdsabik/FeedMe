@@ -56,7 +56,11 @@ export default class App extends React.Component {
         />
         <Route exact path="/menu" component={Menu} />
         <Route exact path="/cart" component={Cart} />
-        <Route exact path="/checkout" component={Checkout} />
+        <Route
+          exact
+          path="/checkout"
+          render={(props) => <Checkout {...props} />}
+        />
       </div>
     );
   };

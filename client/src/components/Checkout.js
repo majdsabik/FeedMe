@@ -6,17 +6,21 @@ import { getCartData, placeOrder } from "../services/repository";
 export default class Checkout extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
       menu: [],
       total: 0,
+      //address: props.user.address,
     };
   }
 
   checkout() {
     let order = this.state.menu;
-    placeOrder(order)
+    let total = this.state.total;
+    placeOrder(order, total)
       .then((response) => {
         this.props.history.push("/menu");
+        localStorage.removeItem("cart");
       })
       .catch((err) => console.log(err));
   }

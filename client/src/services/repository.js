@@ -39,9 +39,9 @@ export function getSubOrders(restaurantPrefix) {
   });
 }
 
-export function placeOrder(order) {
+export function placeOrder(order, total) {
   return axios
-    .post("/api/cart/order", { order })
+    .post("/api/cart/order", { order, total })
     .then((response) => {
       console.log(response.data);
     })
