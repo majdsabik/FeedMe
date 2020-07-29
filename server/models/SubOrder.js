@@ -6,15 +6,23 @@ const subOrderSchema = new Schema({
   subTotal: Number,
   status: {
     type: String,
-    enum: ["placed", "inPreparation", "outForDelivery"],
+    enum: ["placed", "inPreparation", "outForDelivery", "Delivered"],
     default: "placed",
   },
-  itemName: String,
-  qty: Number,
+  items: [
+    {
+      itemid: {
+        type: Schema.Types.ObjectId,
+        ref: "MenuItem",
+      },
+      qty: Number,
+    },
+  ],
   restaurant: {
     type: Schema.Types.ObjectId,
     ref: "Restaurant",
   },
+  restaurantPrefix: String,
 
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },

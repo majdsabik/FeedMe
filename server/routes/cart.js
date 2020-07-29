@@ -5,6 +5,7 @@ const Order = require("../models/Order");
 const MenuItem = require("../models/MenuItem");
 const SubOrder = require("../models/SubOrder");
 const Restaurant = require("../models/Restaurant");
+const User = require("../models/Customer");
 
 router.post("/", (req, res) => {
   let menu = [],
@@ -22,59 +23,70 @@ router.post("/", (req, res) => {
 
 router.post("/order", (req, res) => {
   let items = req.body.order;
+  const newItems = items.reduce((a, v) => {
+    if (a[v.restaurantPrefix]) {
+      a[v.restaurantPrefix].push(v);
+    } else {
+      a[v.restaurantPrefix] = [v];
+    }
+    return a;
+  }, {});
+  const subOrders = [];
   let id = new Date().getTime();
-  const test2 = items.map((el) => {
-    return Restaurant.findOne({ prefix: el.restaurantPrefix }).then((res) => {
-      const subOrderId = el.restaurantPrefix + id;
-      const subTotal = el.price * el.qty;
-      const itemName = el.name;
-      const qty = el.qty;
-      const restaurantPrefix = el.restaurantPrefix;
-      return SubOrder.create({
-        subOrderId,
-        subTotal,
-        itemName,
-        qty,
-        restaurantPrefix,
-      })
-        .then((subOrder) => {
-          console.log(subOrder);
-        })
-        .catch((err) => {
-          console.log(err);
+
+  const orderId = "ON" + id;
+  const Customer = req.user._id;
+  const totPrice = req.body.total;
+  console.log("I am the customer", Customer);
+
+  Order.create({
+    orderId,
+    Customer,
+    totPrice,
+  })
+    .then((newOrder) => {
+      let mainId = newOrder._id;
+      User.findByIdAndUpdate(
+        { _id: req.user._id },
+        { $push: { orders: newOrder._id } }
+      );
+      for (let restaurant in newItems) {
+        const subOrderId = restaurant + id;
+        const subTotal = newItems[restaurant].reduce(
+          (a, v) => a + v.price * v.qty,
+          0
+        );
+        const items = newItems[restaurant].map((item) => {
+          return (item = {
+            itemid: item._id,
+            qty: item.qty,
+          });
         });
-    });
-  });
-
-  console.log(test2);
-  // const arrays = Promise.all(test2).then((resp) => {
-  //   console.log("Arrays", resp);
-  // });
-
-  // items.forEach((el) => {
-  //   for (let i = 0; i < items.length; i++) {
-  //     result[el.restaurantPrefix] = items.filter(
-  //       (res) => res.restaurantPrefix === el.restaurantPrefix
-  //     );
-  //   }
-  // });
-  // console.log("This is the result", result);
-
-  // result.forEach((res) => {
-  //   console.log("I am here", res);
-  //   subOrderId = res.restaurantPrefix + new Date().getTime();
-  //   subTotal = res.price * res.qty;
-  //   items = items.push(res.itemNo);
-  //   restaurantPrefix = res.restaurantPrefix;
-  //   console.log(subOrderId, subTotal, items, restaurantPrefix);
-  //   SubOrder.create({ subOrderId, subTotal, items, restaurantPrefix })
-  //     .then((subOrder) => {
-  //       console.log(subOrder);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // });
+        SubOrder.create({
+          subOrderId,
+          subTotal,
+          items,
+          restaurantPrefix: restaurant,
+        })
+          .then((subOrder) => {
+            Order.findByIdAndUpdate(
+              mainId,
+              {
+                $push: { subOrders: subOrder._id },
+              },
+              { new: true }
+            );
+          })
+          .then((MainOrder) => {
+            return res.json(MainOrder);
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+          .then(() => console.log("The then part", subOrders));
+      }
+    })
+    .catch((err) => console.log(err));
   res.json(true);
 });
 

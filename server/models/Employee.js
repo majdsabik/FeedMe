@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 
 const employeeSchema = new Schema({
@@ -8,6 +8,6 @@ const employeeSchema = new Schema({
   restaurantPrefix: String,
 });
 
-const Employee = mongoose.model('Employee', employeeSchema);
+const Employee = mongoose.model("Employee", employeeSchema);
 
 module.exports = Employee;
