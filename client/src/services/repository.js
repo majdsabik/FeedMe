@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 
 const BASE_URL = 'http://localhost:5555';
@@ -30,11 +29,11 @@ export function getProducts() {
 
 export function placeOrder(order, total) {
   return axios
-    .post("/api/cart/order", { order, total })
-    .then((response) => {
+    .post('/api/cart/order', { order, total })
+    .then(response => {
       console.log(response.data);
     })
-    .catch((err) => {
+    .catch(err => {
       console.log(err);
     });
 }
@@ -68,4 +67,3 @@ export function advanceState(id, status) {
 //       console.log(err);
 //     });
 // }
-
