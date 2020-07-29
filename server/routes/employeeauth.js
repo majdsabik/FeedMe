@@ -14,8 +14,8 @@ router.post('/login', (req, res) => {
     }
     req.login(user, err => {
       if (err) {
-        console.log(err)
-        return res.status(500).json({ message: 'Error while attempting to login'});
+        console.log(err);
+        return res.status(500).json({ message: 'Error while attempting to login' });
       }
       return res.status(200).json(user);
     });
