@@ -38,7 +38,6 @@ router.post("/order", (req, res) => {
   const orderId = "ON" + id;
   const Customer = req.user._id;
   const totPrice = req.body.total;
-  console.log("I am the customer", Customer);
 
   Order.create({
     orderId,
@@ -47,10 +46,17 @@ router.post("/order", (req, res) => {
   })
     .then((newOrder) => {
       let mainId = newOrder._id;
+      //console.log("Order Id:", mainId);
+      //console.log("I am the user", req.user);
       User.findByIdAndUpdate(
-        { _id: req.user._id },
-        { $push: { orders: newOrder._id } }
-      );
+        Customer,
+        { $addToSet: { orders: mainId } },
+        { new: true }
+      )
+        .then((result) => {
+          //console.log(result);
+        })
+        .catch((err) => console.log(err));
       for (let restaurant in newItems) {
         const subOrderId = restaurant + id;
         const subTotal = newItems[restaurant].reduce(
@@ -70,21 +76,18 @@ router.post("/order", (req, res) => {
           restaurantPrefix: restaurant,
         })
           .then((subOrder) => {
-            Order.findByIdAndUpdate(
-              mainId,
-              {
-                $push: { subOrders: subOrder._id },
-              },
-              { new: true }
+            let subOrderId = subOrder._id;
+            Order.findByIdAndUpdate(mainId, {
+              $push: { subOrders: subOrderId }
+            }).then((test) =>
+              console.log()
             );
           })
           .then((MainOrder) => {
-            return res.json(MainOrder);
           })
           .catch((err) => {
             console.log(err);
           })
-          .then(() => console.log("The then part", subOrders));
       }
     })
     .catch((err) => console.log(err));
