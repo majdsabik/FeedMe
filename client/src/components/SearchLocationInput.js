@@ -61,7 +61,7 @@ export default function SearchLocationInput(props) {
         ref={autoCompleteRef}
         onChange={(event) => setQuery(event.target.value)}
         placeholder="Enter your address"
-        value={props.address ? props.address : query}
+        value={query}
       />
     </div>
   );

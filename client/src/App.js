@@ -1,4 +1,3 @@
-
 import React from "react";
 import "./App.css";
 import { googleLogin as Google } from "./services/auth";
@@ -11,6 +10,7 @@ import Cart from "./components/Cart";
 import OrdersView from "./components/OrdersView";
 import Checkout from "./components/Checkout";
 import { SearchLocationInput } from "./SearchLocationInput";
+import Navbar from "./components/Navbar";
 
 export default class App extends React.Component {
   state = {
@@ -27,6 +27,7 @@ export default class App extends React.Component {
   render = () => {
     return (
       <div className="App">
+        <Navbar user={this.state.user} setUser={this.setUser} />
         <Route
           exact
           path="/"
