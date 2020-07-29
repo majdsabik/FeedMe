@@ -40,7 +40,7 @@ export function getSubOrders(restaurantPrefix) {
 }
 
 export function advanceState(id, status) {
-  return axios.post('/api/suborders/advance', { id, status }).then(response => {
+  return axios.put('/api/suborders/advance', { id, status }).then(response => {
     return response.data;
   });
 }

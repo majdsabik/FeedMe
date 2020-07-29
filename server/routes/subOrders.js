@@ -13,11 +13,9 @@ router.post('/', (req, res) => {
     });
 });
 
-router.post('/advance', (req, res) => {
-  console.log(req.body);
+router.put('/advance', (req, res) => {
   SubOrder.findByIdAndUpdate({ _id: req.body.id }, { status: req.body.status }, { upsert: true })
     .then(menu => {
-      console.log(menu);
       res.status(200).json(menu);
     })
     .catch(err => {

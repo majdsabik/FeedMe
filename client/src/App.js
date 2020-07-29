@@ -8,8 +8,7 @@ import EmployeeLogin from './components/employeeLogin';
 import Menu from './components/Menu';
 import Cart from './components/Cart';
 import OrdersView from './components/OrdersView';
-import Checkout from './components/Checkout';
-import { SearchLocationInput } from './SearchLocationInput';
+import Navbar from './components/Navbar';
 
 export default class App extends React.Component {
   state = {
@@ -26,13 +25,13 @@ export default class App extends React.Component {
   render = () => {
     return (
       <div className='App'>
+        <Navbar user={this.state.user} setUser={this.setUser} />
         <Route exact path='/' render={props => <OrdersView setUser={this.setUser} user={this.state.user} {...props} />} />
         <Route exact path='/signup' render={props => <Signup setUser={this.setUser} {...props} />} />
         <Route exact path='/login' render={props => <Login setUser={this.setUser} {...props} />} />
         <Route exact path='/employee/login' render={props => <EmployeeLogin setUser={this.setUser} {...props} />} />
         <Route exact path='/menu' component={Menu} />
         <Route exact path='/cart' component={Cart} />
-        <Route exact path='/checkout' component={Checkout} />
       </div>
     );
   };
