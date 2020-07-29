@@ -4,6 +4,7 @@ const SubOrder = require('../models/SubOrder');
 
 router.post('/', (req, res) => {
   SubOrder.find({ $and: [{ restaurantPrefix: req.body.restaurantPrefix }, { status: { $ne: 'Delivered' } }] })
+    .populate('items')
     .sort({ createdAt: 1 })
     .then(menu => {
       res.status(200).json(menu);
