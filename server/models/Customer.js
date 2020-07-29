@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const { Schema, model } = mongoose;
 
 const customerSchema = new Schema({
@@ -13,11 +13,11 @@ const customerSchema = new Schema({
   orders: [
     {
       type: Schema.Types.ObjectId,
-      ref: "order",
+      ref: 'Order',
     },
   ],
 });
 
-const Customer = mongoose.model("Customer", customerSchema);
+const Customer = mongoose.model('Customer', customerSchema);
 
 module.exports = Customer;
