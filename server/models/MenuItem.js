@@ -1,3 +1,4 @@
+
 const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 
@@ -11,6 +12,10 @@ const menuItemSchema = new Schema({
   restaurantPrefix: String,
   imgName: String,
   imgPath: String,
+  restaurantID: {
+    type: Schema.Types.ObjectId,
+    ref: "Restaurant",
+  },
 });
 
 const MenuItem = mongoose.model("MenuItem", menuItemSchema);

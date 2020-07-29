@@ -1,3 +1,4 @@
+
 const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 
@@ -13,7 +14,7 @@ const orderSchema = new Schema({
   totPrice: Number,
   status: {
     type: String,
-    enum: ["placed", "inPreparation", "outForDelivery"],
+    enum: ["placed", "inPreparation", "outForDelivery", "Delivered"],
     default: "placed",
   },
   scheduledDelivery: Date,
@@ -23,6 +24,8 @@ const orderSchema = new Schema({
       ref: "SubOrder",
     },
   ],
+  deliveryAddress: String,
+  place_id: String,
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 });
