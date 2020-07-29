@@ -1,4 +1,3 @@
-
 const express = require("express");
 const app = require("../app");
 const router = express.Router();
@@ -45,7 +44,9 @@ router.post("/order", (req, res) => {
     totPrice,
   })
     .then((newOrder) => {
+      res.json(newOrder);
       let mainId = newOrder._id;
+      let OrderId = newOrder.orderId;
       //console.log("Order Id:", mainId);
       //console.log("I am the user", req.user);
       User.findByIdAndUpdate(
@@ -78,21 +79,16 @@ router.post("/order", (req, res) => {
           .then((subOrder) => {
             let subOrderId = subOrder._id;
             Order.findByIdAndUpdate(mainId, {
-              $push: { subOrders: subOrderId }
-            }).then((test) =>
-              console.log()
-            );
+              $push: { subOrders: subOrderId },
+            }).then((test) => console.log());
           })
-          .then((MainOrder) => {
-          })
+          .then((MainOrder) => {})
           .catch((err) => {
             console.log(err);
-          })
+          });
       }
     })
     .catch((err) => console.log(err));
-  res.json(true);
 });
 
 module.exports = router;
-
