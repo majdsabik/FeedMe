@@ -6,6 +6,9 @@ export default class landinPage extends Component {
   render() {
     return (
       <>
+        <br />
+        <br />
+        <br />
         <h1 className='display-2 text-center'>Welcome to FeedMe</h1>
         <div className='text-left d-sm-flex align-items-sm-center align-items-lg-center'>
           <img src={img} width='55%' />

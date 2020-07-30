@@ -27,7 +27,7 @@ export default class MenuItem extends React.Component {
           <h4 className='card-title'>{menuItem.name}</h4>
           <p className='card-text'>{menuItem.description}</p>
           <h5 className='card-text'>
-            <small>price: </small>${menuItem.price}
+            <small>price: </small>€{menuItem.price}
           </h5>
 
           <div>

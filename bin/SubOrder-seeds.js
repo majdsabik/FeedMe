@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const SubOrder = require('../models/SubOrder');
 
-mongoose.connect('mongodb://localhost/FeedMe', {
+mongoose.connect('mongodb+srv://Majd:jDhbPasGdgn1fgz2@cluster0.hhdjt.mongodb.net/FeedMe?retryWrites=true&w=majority', {
   useCreateIndex: true,
   useNewUrlParser: true,
   useUnifiedTopology: true,

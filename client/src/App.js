@@ -7,7 +7,6 @@ import { Route, Redirect } from 'react-router-dom';
 import Menu from './components/Menu';
 import Cart from './components/Cart';
 import Checkout from './components/Checkout';
-import { SearchLocationInput } from './SearchLocationInput';
 import Navbar from './components/Navbar';
 import SuccessPage from './components/successpage';
 import LandingPage from './components/LandingPage';
@@ -25,6 +24,10 @@ export default class App extends React.Component {
     });
   };
 
+  setOrder = order => {
+    this.setState({ order: order });
+  };
+
   render = () => {
     return (
       <div className='App'>
@@ -34,8 +37,8 @@ export default class App extends React.Component {
         <Route exact path='/login' render={props => <Login setUser={this.setUser} {...props} />} />
         <Route exact path='/menu' component={Menu} />
         <Route exact path='/cart' component={Cart} />
-        <Route exact path='/checkout' render={props => <Checkout user={this.state.user} order={this.state.order} {...props} />} />
-        <Route exact path='/success' render={props => <SuccessPage user={this.state.user} {...props} />} />
+        <Route exact path='/checkout' render={props => <Checkout user={this.state.user} order={this.setOrder} {...props} />} />
+        <Route exact path='/success' render={props => <SuccessPage user={this.state.user} order={this.state.order} {...props} />} />
       </div>
     );
   };

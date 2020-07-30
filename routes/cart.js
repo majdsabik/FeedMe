@@ -45,9 +45,7 @@ router.post('/order', (req, res) => {
       let mainId = newOrder._id;
       let OrderId = newOrder.orderId;
       User.findByIdAndUpdate(Customer, { $addToSet: { orders: mainId } }, { new: true })
-        .then(result => {
-          //console.log(result);
-        })
+        .then(result => {})
         .catch(err => console.log(err));
       for (let restaurant in newItems) {
         const subOrderId = restaurant + id;
@@ -57,14 +55,6 @@ router.post('/order', (req, res) => {
           for (let i = 0; i < item.qty; i++) {
             items.push(item._id);
           }
-          /* return [
-            item._id,
-            item.qty,
-          ]; */
-          /* return (item = {
-            itemid: item._id,
-            qty: item.qty,
-          }); */
         });
         SubOrder.create({
           subOrderId,

@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 const MenuItem = require('../models/MenuItem');
-​
-mongoose.connect('mongodb://localhost/FeedMe', {
+
+mongoose.connect('mongodb+srv://Majd:jDhbPasGdgn1fgz2@cluster0.hhdjt.mongodb.net/FeedMe?retryWrites=true&w=majority', {
   useCreateIndex: true,
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
 });
-​
+
 const menu = [
   {
     itemNo: '001',
@@ -16,7 +16,9 @@ const menu = [
     price: 7.5,
     category: ['lunch', 'thai', 'fit', 'salad'],
     prepTime: 8,
-    restaurantPrefix: 'RIC',
+    restaurantID: 'RIC',
+    imgName: '',
+    imgPath: '',
   },
   {
     itemNo: '002',
@@ -25,7 +27,9 @@ const menu = [
     price: 9,
     category: ['lunch', 'thai', 'spicy', 'seafood'],
     prepTime: 15,
-    restaurantPrefix: 'RIC',
+    restaurantID: 'RIC',
+    imgName: '',
+    imgPath: '',
   },
   {
     itemNo: '003',
@@ -34,7 +38,9 @@ const menu = [
     price: 9,
     category: ['lunch', 'thai', 'spicy', 'chicken'],
     prepTime: 15,
-    restaurantPrefix: 'RIC',
+    restaurantID: 'RIC',
+    imgName: '',
+    imgPath: '',
   },
   {
     itemNo: '004',
@@ -43,7 +49,9 @@ const menu = [
     price: 11,
     category: ['lunch', 'thai', 'fish'],
     prepTime: 15,
-    restaurantPrefix: 'RIC',
+    restaurantID: 'RIC',
+    imgName: '',
+    imgPath: '',
   },
   {
     itemNo: '005',
@@ -52,7 +60,9 @@ const menu = [
     price: 10.5,
     category: ['lunch', 'dinner', 'indian', 'fish'],
     prepTime: 15,
-    restaurantPrefix: 'TDA',
+    restaurantID: 'TDA',
+    imgName: '',
+    imgPath: '',
   },
   {
     itemNo: '006',
@@ -61,7 +71,9 @@ const menu = [
     price: 12,
     category: ['lunch', 'dinner', 'indian', 'vegetarian'],
     prepTime: 12,
-    restaurantPrefix: 'TDA',
+    restaurantID: 'TDA',
+    imgName: '',
+    imgPath: '',
   },
   {
     itemNo: '007',
@@ -70,7 +82,9 @@ const menu = [
     price: 15,
     category: ['lunch', 'dinner', 'indian', 'seafood'],
     prepTime: 15,
-    restaurantPrefix: 'TDA',
+    restaurantID: 'TDA',
+    imgName: '',
+    imgPath: '',
   },
   {
     itemNo: '008',
@@ -79,10 +93,12 @@ const menu = [
     price: 10.5,
     category: ['lunch', 'dinner', 'indian', 'lamb'],
     prepTime: 15,
-    restaurantPrefix: 'TDA',
+    restaurantID: 'TDA',
+    imgName: '',
+    imgPath: '',
   },
 ];
-​
+
 MenuItem.insertMany(menu)
   .then(menu => {
     console.log('Success! Added ' + menu.length + ' dishes to the database');

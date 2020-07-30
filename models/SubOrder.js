@@ -15,15 +15,6 @@ const subOrderSchema = new Schema({
       ref: 'MenuItem',
     },
   ],
-  /* items: [
-    {
-      itemid: {
-        type: Schema.Types.ObjectId,
-        ref: 'MenuItem',
-      },
-      qty: Number,
-    },
-  ], */
   restaurant: {
     type: Schema.Types.ObjectId,
     ref: 'Restaurant',

@@ -13,7 +13,7 @@ export default class CartItem extends React.Component {
         <div className="card-body">
           <h4 className="card-title">{menuItem.name}</h4>
           <h5 className="card-text">
-            <small>price: </small>${menuItem.price}
+            <small>price: </small>€{menuItem.price}
           </h5>
           <span className="card-text text-success">
             <small>Quantity: </small>

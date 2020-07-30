@@ -77,7 +77,7 @@ export default class OrdersView extends React.Component {
               <br />
               <h4>Order ID: {order.subOrderId}</h4>
               <h4>Order Status: {order.status}</h4>
-              <h4>Subtotal: ${order.subTotal}</h4>
+              <h4>Subtotal: €{order.subTotal}</h4>
               <h4>Created at: {order.createdAt.split('T')[1].substring(0, 8)}</h4>
               <h4>Order Items: {this.calculateQuantiny(order)}</h4>
               <Button to='/' onClick={event => this.handleSubmit(event, order)}>
