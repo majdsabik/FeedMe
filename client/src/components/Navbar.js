@@ -1,10 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Navbar as Nav } from "react-bootstrap";
-import { logout } from "../services/auth";
-import LandingPage from "./landinPage";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Navbar as Nav } from 'react-bootstrap';
+import { logout } from '../services/auth';
 
-const handleLogout = (props) => {
+const handleLogout = props => {
   logout().then(() => {
     props.setUser(null);
   });
@@ -12,19 +11,18 @@ const handleLogout = (props) => {
 
 export default function Navbar(props) {
   return (
-    <Nav className="nav justify-content-end" bg="primary">
-      <LandingPage />
+    <Nav className='nav justify-content-end' bg='primary'>
       {props.user && <Nav.Brand>Welcome {props.user.firstName} </Nav.Brand>}
       <Nav.Brand>
-        <Link to="/">Home</Link>
+        <Link to='/'>Home</Link>
       </Nav.Brand>
       {props.user ? (
         <>
           <Nav.Brand>
-            <Link to="/menu">Menu</Link>
+            <Link to='/menu'>Menu</Link>
           </Nav.Brand>
           <Nav.Brand>
-            <Link to="/" onClick={() => handleLogout(props)}>
+            <Link to='/' onClick={() => handleLogout(props)}>
               Logout
             </Link>
           </Nav.Brand>
@@ -32,10 +30,10 @@ export default function Navbar(props) {
       ) : (
         <>
           <Nav.Brand>
-            <Link to="/signup">Signup</Link>
+            <Link to='/signup'>Signup</Link>
           </Nav.Brand>
           <Nav.Brand>
-            <Link to="/login">Login</Link>
+            <Link to='/login'>Login</Link>
           </Nav.Brand>
         </>
       )}
