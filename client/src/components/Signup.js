@@ -4,10 +4,8 @@ import { signup } from "../services/auth";
 import SearchLocationInput from "./SearchLocationInput";
 
 export default class Signup extends Component {
-  constructor() {
-    super();
-    this.address = "This is address";
-    this.place_id = "This is place_id";
+  constructor(props) {
+    super(props);
   }
   state = {
     firstName: "",
@@ -25,11 +23,6 @@ export default class Signup extends Component {
     this.setState({
       [name]: value,
     });
-  };
-
-  updateAddress = (address, placeId) => {
-    console.log("Got here!");
-    this.setState({ address, placeId });
   };
 
   handleSubmit = (event) => {
@@ -63,8 +56,9 @@ export default class Signup extends Component {
     );
   };
 
-  greet = (name) => {
-    return <h1>Hello {name}</h1>;
+  updateAddress = (address, placeId) => {
+    console.log("Got here!");
+    this.setState({ address, placeId });
   };
 
   render() {
@@ -112,14 +106,17 @@ export default class Signup extends Component {
               onChange={this.handleChange}
             />
           </Form.Group>
-          <Form.Group>
-            <SearchLocationInput
-              place_id={this.place_id}
-              onChange={() => null}
-              value={this.state.address}
-              updateAddress={this.updateAddress}
-            />
-          </Form.Group>
+          {
+            <Form.Group>
+              <Form.Label>Address:</Form.Label>
+              <SearchLocationInput
+                place_id={this.place_id}
+                onChange={() => null}
+                value={this.state.address}
+                updateAddress={this.updateAddress}
+              />
+            </Form.Group>
+          }
           {this.state.message && (
             <Alert variant="danger">{this.state.message}</Alert>
           )}

@@ -1,30 +1,38 @@
-
 import React from "react";
-// import {PlaceOrder} from "../services/repository";
 import { Redirect, Link } from "react-router-dom";
 import { getCartData, placeOrder } from "../services/repository";
+import SearchLocationInput from "./SearchLocationInput";
+import { Form, Button, Alert } from "react-bootstrap";
 
 export default class Checkout extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
       menu: [],
       total: 0,
-      //address: props.user.address,
+      deliveryAddress: this.props.address,
+      address: this.props.user.address,
     };
   }
 
   checkout() {
     let order = this.state.menu;
     let total = this.state.total;
-    placeOrder(order, total)
+    let deliveryAddress = this.state.deliveryAddress;
+    let place_id = this.state.place_id;
+    placeOrder(order, total, deliveryAddress, place_id)
       .then((response) => {
-        this.props.history.push("/menu");
+        console.log(response);
+        this.props.history.push("/success");
         localStorage.removeItem("cart");
       })
       .catch((err) => console.log(err));
   }
+
+  updateAddress = (deliveryAddress, place_id) => {
+    console.log("Got here!");
+    this.setState({ deliveryAddress, place_id });
+  };
 
   componentDidMount() {
     let cart = localStorage.getItem("cart");
@@ -42,6 +50,8 @@ export default class Checkout extends React.Component {
   }
 
   render() {
+    console.log(this.props);
+    if (!this.props.user) return <Redirect to="/login" />;
     const { menu, total } = this.state;
     return (
       <div className=" container">
@@ -71,6 +81,25 @@ export default class Checkout extends React.Component {
         ) : (
           ""
         )}
+        {menu.length ? (
+          <div>
+            <h4>
+              The delivery address is {this.props.user.address} , if you need to
+              change the address , please select the address below:
+            </h4>
+            {
+              <SearchLocationInput
+                place_id={this.place_id}
+                onChange={() => null}
+                value={this.state.address}
+                updateAddress={this.updateAddress}
+              />
+            }
+          </div>
+        ) : (
+          ""
+        )}
+
         {!menu.length ? (
           <h3 className="text-warning">No item on the cart</h3>
         ) : (
@@ -101,4 +130,3 @@ export default class Checkout extends React.Component {
     );
   }
 }
-

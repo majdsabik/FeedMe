@@ -22,8 +22,10 @@ export default function SearchLocationInput(props) {
       script.onload = () => callback();
     }
 
+    //if (window.scriptLoaded) return;
     script.src = url;
     document.getElementsByTagName("head")[0].appendChild(script);
+    //window.scriptLoaded = true;
   };
 
   function handleScriptLoad(updateQuery, autoCompleteRef) {
@@ -49,8 +51,9 @@ export default function SearchLocationInput(props) {
   console.log(props);
 
   useEffect(() => {
+    console.log(process.env);
     loadScript(
-      `https://maps.googleapis.com/maps/api/js?key=AIzaSyC_CpoA364Qp3ANxSx67t4DQoUljagmPeg&libraries=places`,
+      `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places`,
       () => handleScriptLoad(setQuery, autoCompleteRef)
     );
   }, []);
@@ -62,6 +65,7 @@ export default function SearchLocationInput(props) {
         onChange={(event) => setQuery(event.target.value)}
         placeholder="Enter your address"
         value={query}
+        className="form-control"
       />
     </div>
   );

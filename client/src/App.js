@@ -11,11 +11,13 @@ import OrdersView from "./components/OrdersView";
 import Checkout from "./components/Checkout";
 import { SearchLocationInput } from "./SearchLocationInput";
 import Navbar from "./components/Navbar";
+import SuccessPage from "./components/successpage";
 
 export default class App extends React.Component {
   state = {
     user: this.props.user,
     message: "",
+    order: "",
   };
 
   setUser = (user) => {
@@ -61,7 +63,18 @@ export default class App extends React.Component {
         <Route
           exact
           path="/checkout"
-          render={(props) => <Checkout {...props} />}
+          render={(props) => (
+            <Checkout
+              user={this.state.user}
+              order={this.state.order}
+              {...props}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/success"
+          render={(props) => <SuccessPage user={this.state.user} {...props} />}
         />
       </div>
     );
