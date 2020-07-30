@@ -10,9 +10,9 @@ export default class successpage extends Component {
   };
 
   render() {
-    let duration = parseInt(localStorage.getItem("duration") / 60);
+    let duration = localStorage.getItem("duration");
     console.log(duration + "ritesh");
-    const time = duration + 20;
+    let time = duration + 20;
     return (
       <div>
         <MapViewer />
@@ -20,7 +20,7 @@ export default class successpage extends Component {
           Thanks for placing the Order!! Your order number is &nbsp;
           {this.state.order.orderId}!!
         </h1>
-        <h2>The order will be delivered in approximately {time} mins 😊</h2>
+        <h2>The order will be delivered in approximately 40 mins 😊</h2>
         <h2>Guten Appetit</h2>
       </div>
     );
