@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import img from './Landing.png';
 
 export default class landinPage extends Component {
@@ -10,9 +11,11 @@ export default class landinPage extends Component {
           <img src={img} width='55%' />
           <div className='text-center d-lg-flex flex-column justify-content-lg-end align-items-lg-center'>
             <h3>Login or Signup to explore the menu and place your order</h3>
-            <button href='/menu' className='btn btn-primary text-center' type='button'>
-              Menu
-            </button>
+            <Link to='/menu'>
+              <button className='btn btn-primary text-center' type='button'>
+                Menu
+              </button>
+            </Link>
           </div>
         </div>
       </>
