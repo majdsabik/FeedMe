@@ -40,7 +40,6 @@ export default class OrdersView extends React.Component {
   calculateQuantiny(order) {
     let result = {};
     order.items.map(item => (result[item.name] ? result[item.name]++ : (result[item.name] = 1)));
-    console.log(result);
     return (
       <ul>
         {Object.entries(result).map(item => (

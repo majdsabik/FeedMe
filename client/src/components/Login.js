@@ -11,7 +11,6 @@ export default class Login extends Component {
 
   handleChange = event => {
     const { name, value } = event.target;
-    console.log(value);
     this.setState({
       [name]: value,
     });
