@@ -1,6 +1,10 @@
 /*global google*/
-import React, { Component } from 'react';
-import { withGoogleMap, GoogleMap, DirectionsRenderer } from 'react-google-maps';
+import React, { Component } from "react";
+import {
+  withGoogleMap,
+  GoogleMap,
+  DirectionsRenderer,
+} from "react-google-maps";
 class Map extends Component {
   constructor(props) {
     super(props);
@@ -12,8 +16,10 @@ class Map extends Component {
   componentDidMount() {
     const directionsService = new google.maps.DirectionsService();
 
-    const destination_id = localStorage.getItem('placeId');
-    const origin = { placeId: 'ChIJPZnsYhtOqEcRncTWrtTqxrk' };
+    const destination_id = localStorage.getItem("placeId");
+
+    const origin = { placeId: "ChIJPZnsYhtOqEcRncTWrtTqxrk" };
+    //const origin = { placeId: destination_id };
     const destination = { placeId: destination_id };
 
     directionsService.route(
@@ -36,16 +42,17 @@ class Map extends Component {
   }
 
   calculateDeliveryTime() {
-    const destination_id = localStorage.getItem('placeId');
+    const destination_id = localStorage.getItem("placeId");
+
     const distanceMatrixService = new google.maps.DistanceMatrixService();
     distanceMatrixService.getDistanceMatrix(
       {
-        origins: [{ placeId: 'ChIJPZnsYhtOqEcRncTWrtTqxrk' }],
+        origins: [{ placeId: "ChIJPZnsYhtOqEcRncTWrtTqxrk" }],
         destinations: [{ placeId: destination_id }],
-        travelMode: 'BICYCLING',
+        travelMode: "BICYCLING",
         drivingOptions: {
           departureTime: new Date(Date.now() + 100), // for the time N milliseconds from now.
-          trafficModel: 'pessimistic',
+          trafficModel: "pessimistic",
         },
       },
       callback
@@ -53,7 +60,7 @@ class Map extends Component {
     function callback(response, status) {
       // See Parsing the Results for
       // the basics of a callback function.
-      if (status === 'OK') {
+      if (status === "OK") {
         var origins = response.originAddresses;
         var destinations = response.destinationAddresses;
 
@@ -65,8 +72,9 @@ class Map extends Component {
             var duration = element.duration.value;
             var from = origins[i];
             var to = destinations[j];
-            localStorage.clear();
-            localStorage.setItem('duration', duration);
+            console.log(duration);
+            //localStorage.clear();
+            localStorage.setItem("duration", duration);
           }
         }
       }
@@ -74,7 +82,7 @@ class Map extends Component {
   }
 
   render() {
-    const GoogleMapExample = withGoogleMap(props => (
+    const GoogleMapExample = withGoogleMap((props) => (
       <GoogleMap defaultCenter={{ lat: 52.52, lng: 13.41 }} defaultZoom={13}>
         <DirectionsRenderer directions={this.state.directions} />
       </GoogleMap>
@@ -83,7 +91,9 @@ class Map extends Component {
     return (
       <div>
         <GoogleMapExample
-          containerElement={<div style={{ height: `500px`, width: `auto`, margin: 10 }} />}
+          containerElement={
+            <div style={{ height: `500px`, width: `auto`, margin: 10 }} />
+          }
           mapElement={<div style={{ height: `100%` }} />}
         />
       </div>

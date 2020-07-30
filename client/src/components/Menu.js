@@ -1,7 +1,7 @@
-import React from 'react';
-import MenuItem from './MenuItem';
-import { getProducts } from '../services/repository';
-import { Link } from 'react-router-dom';
+import React from "react";
+import MenuItem from "./MenuItem";
+import { getProducts } from "../services/repository";
+import { Link } from "react-router-dom";
 
 export default class Menu extends React.Component {
   constructor(props) {
@@ -12,7 +12,7 @@ export default class Menu extends React.Component {
   }
 
   componentWillMount() {
-    getProducts().then(menu => {
+    getProducts().then((menu) => {
       this.setState({ menu });
     });
   }
@@ -20,18 +20,21 @@ export default class Menu extends React.Component {
   render() {
     const { menu } = this.state;
     return (
-      <div className=' container'>
-        <h3 className='card-title'>List of Available Products</h3>
+      <div className=" container">
+        <h3 className="card-title">Menu</h3>
         <hr />
-        {menu.map(menuItem => (
+        {menu.map((menuItem) => (
           <MenuItem menuItem={menuItem} />
         ))}
         <hr />
-        <Link to='/checkout'>
-          <button className='btn btn-success float-right'>Checkout</button>
+        <Link to="/checkout">
+          <button className="btn btn-success float-right">Checkout</button>
         </Link>
-        <Link to='/cart'>
-          <button className='btn btn-primary float-right' style={{ marginRight: '10px' }}>
+        <Link to="/cart">
+          <button
+            className="btn btn-primary float-right"
+            style={{ marginRight: "10px" }}
+          >
             View Cart
           </button>
         </Link>

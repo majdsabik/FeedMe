@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  margin-top: 7%;
 }
 
 .App-logo {
@@ -70,7 +71,7 @@ h2 {
   padding: 5vh 5vw;
 }
 
-.projects-container>* {
+.projects-container > * {
   flex: 1;
 }
 
