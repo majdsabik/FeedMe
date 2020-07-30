@@ -27,7 +27,6 @@ export default class Checkout extends React.Component {
     placeOrder(order, total, deliveryAddress, place_id)
       .then((response) => {
         let place_id = response.place_id;
-        console.log(place_id);
         localStorage.clear();
         localStorage.setItem("placeId", place_id);
         this.props.order(response);

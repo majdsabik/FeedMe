@@ -36,7 +36,6 @@ router.post("/order", (req, res) => {
   const totPrice = req.body.total;
   const place_id = req.body.place_id;
   const deliveryAddress = req.body.deliveryAddress;
-  console.log(req.body);
 
   Order.create({
     orderId,

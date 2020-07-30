@@ -43,7 +43,6 @@ export default function SearchLocationInput(props) {
     const placeId = addressObject.place_id;
     updateQuery(query);
     address = query;
-    console.log(placeId);
     props.updateAddress(address, placeId);
   }
 

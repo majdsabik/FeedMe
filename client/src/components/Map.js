@@ -72,7 +72,6 @@ class Map extends Component {
             var duration = element.duration.value;
             var from = origins[i];
             var to = destinations[j];
-            console.log(duration);
             //localStorage.clear();
             localStorage.setItem("duration", duration);
           }

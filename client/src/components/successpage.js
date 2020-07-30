@@ -11,7 +11,6 @@ export default class successpage extends Component {
 
   render() {
     let duration = localStorage.getItem("duration");
-    console.log(duration + "ritesh");
     let time = duration + 20;
     return (
       <div>
