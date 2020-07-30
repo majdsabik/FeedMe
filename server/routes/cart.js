@@ -1,6 +1,5 @@
-
-const express = require("express");
-const app = require("../app");
+const express = require('express');
+const app = require('../app');
 const router = express.Router();
 const Order = require('../models/Order');
 const MenuItem = require('../models/MenuItem');
@@ -41,21 +40,15 @@ router.post('/order', (req, res) => {
     Customer,
     totPrice,
   })
-    .then((newOrder) => {
+    .then(newOrder => {
       res.json(newOrder);
       let mainId = newOrder._id;
       let OrderId = newOrder.orderId;
-      //console.log("Order Id:", mainId);
-      //console.log("I am the user", req.user);
-      User.findByIdAndUpdate(
-        Customer,
-        { $addToSet: { orders: mainId } },
-        { new: true }
-      )
-        .then((result) => {
+      User.findByIdAndUpdate(Customer, { $addToSet: { orders: mainId } }, { new: true })
+        .then(result => {
           //console.log(result);
         })
-        .catch((err) => console.log(err));
+        .catch(err => console.log(err));
       for (let restaurant in newItems) {
         const subOrderId = restaurant + id;
         const subTotal = newItems[restaurant].reduce((a, v) => a + v.price * v.qty, 0);
@@ -83,17 +76,15 @@ router.post('/order', (req, res) => {
             let subOrderId = subOrder._id;
             Order.findByIdAndUpdate(mainId, {
               $push: { subOrders: subOrderId },
-            }).then((test) => console.log());
+            }).then(test => console.log());
           })
-          .then((MainOrder) => {})
-          .catch((err) => {
-
+          .then(MainOrder => {})
+          .catch(err => {
             console.log(err);
           });
       }
     })
-    .catch((err) => console.log(err));
-
+    .catch(err => console.log(err));
 });
 
 module.exports = router;

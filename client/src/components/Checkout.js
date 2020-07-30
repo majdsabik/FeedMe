@@ -22,7 +22,6 @@ export default class Checkout extends React.Component {
     let place_id = this.state.place_id;
     placeOrder(order, total, deliveryAddress, place_id)
       .then(response => {
-        console.log(response);
         this.props.history.push('/success');
         localStorage.removeItem('cart');
       })
@@ -30,7 +29,6 @@ export default class Checkout extends React.Component {
   }
 
   updateAddress = (deliveryAddress, place_id) => {
-    console.log('Got here!');
     this.setState({ deliveryAddress, place_id });
   };
 
@@ -50,7 +48,6 @@ export default class Checkout extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     if (!this.props.user) return <Redirect to='/login' />;
     const { menu, total } = this.state;
     return (
