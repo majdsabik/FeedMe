@@ -39,12 +39,14 @@ export default class OrdersView extends React.Component {
 
   calculateQuantiny(order) {
     let result = {};
-    order.items.map(item => (result[item.name] ? result[item.name]++ : (result[item.name] = 1)));
+    order.items.map((item) =>
+      result[item.name] ? result[item.name]++ : (result[item.name] = 1)
+    );
     console.log(result);
     return (
       <ul>
-        {Object.entries(result).map(item => (
-          <li>{item.join(': ')}</li>
+        {Object.entries(result).map((item) => (
+          <li>{item.join(": ")}</li>
         ))}
       </ul>
     );
@@ -79,19 +81,24 @@ export default class OrdersView extends React.Component {
               <h4>Order ID: {order.subOrderId}</h4>
               <h4>Order Status: {order.status}</h4>
 
-              //<h4>Order Items: {order.items.join(" - ")}</h4>
-              //<h4>Subtotal: ${order.subTotal}</h4>
-              //<h4>
-                //Created at: {order.createdAt.split("T")[1].substring(0, 8)}
-              //</h4>
-              //<Button
-                //to="/"
-                //onClick={(event) => this.handleSubmit(event, order)}
-              //>
+              {/*<h4>Order Items: {order.items.join(" - ")}</h4>
               <h4>Subtotal: ${order.subTotal}</h4>
-              <h4>Created at: {order.createdAt.split('T')[1].substring(0, 8)}</h4>
+              <h4>
+                Created at: {order.createdAt.split("T")[1].substring(0, 8)}
+              </h4>
+              <Button
+                to="/"
+                onClick={(event) => this.handleSubmit(event, order)}
+              > */}
+              <h4>Subtotal: ${order.subTotal}</h4>
+              <h4>
+                Created at: {order.createdAt.split("T")[1].substring(0, 8)}
+              </h4>
               <h4>Order Items: {this.calculateQuantiny(order)}</h4>
-              <Button to='/' onClick={event => this.handleSubmit(event, order)}>
+              <Button
+                to="/"
+                onClick={(event) => this.handleSubmit(event, order)}
+              >
                 Advance Statue
               </Button>
               <br />
