@@ -80,7 +80,7 @@ router.get(
 router.get(
   '/callback',
   passport.authenticate('google', {
-    successRedirect: 'http://localhost:3000',
+    successRedirect: 'https://feedme-ironhack.herokuapp.com',
     failureRedirect: '/login',
   })
 );

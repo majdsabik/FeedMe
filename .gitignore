@@ -22,9 +22,6 @@ yarn-error.log*
 /server/.vscode
 /client/.env
 /client/node_modules
-<<<<<<< HEAD
-=======
 /client/.vscode
->>>>>>> dbe50aa355f9f5b78a9ba44db39aafc5e413b438
 **/.DS_Store
 **/.env
