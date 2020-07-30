@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import MapViewer from './MapViewer';
+import React, { Component } from "react";
+import MapViewer from "./MapViewer";
 
 export default class successpage extends Component {
   constructor(props) {
@@ -10,7 +10,8 @@ export default class successpage extends Component {
   };
 
   render() {
-    let duration = parseInt(localStorage.getItem('duration') / 60);
+    let duration = parseInt(localStorage.getItem("duration") / 60);
+    console.log(duration + "ritesh");
     const time = duration + 20;
     return (
       <div>
