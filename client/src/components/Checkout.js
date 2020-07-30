@@ -37,10 +37,6 @@ export default class Checkout extends React.Component {
       .catch((err) => console.log(err));
   }
 
-  updateAddress = (deliveryAddress, place_id) => {
-    this.setState({ deliveryAddress, place_id });
-  };
-
   componentDidMount() {
     let cart = localStorage.getItem("cart");
     if (!cart) return;
