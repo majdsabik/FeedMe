@@ -71,5 +71,9 @@ app.use('/api/cart', require('./routes/cart'));
 app.use('/api/employee/auth/', require('./routes/employeeauth'));
 app.use('/api/menu', require('./routes/menuItems'));
 app.use('/api/suborders', require('./routes/subOrders'));
+app.use((req, res) => {
+  // If no routes match, send them the React HTML.
+  res.sendFile(__dirname + '/client/build/index.html');
+});
 
 module.exports = app;
