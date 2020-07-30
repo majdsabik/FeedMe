@@ -70,8 +70,37 @@ h2 {
   padding: 5vh 5vw;
 }
 
-.projects-container>* {
+.projects-container > * {
   flex: 1;
+}
+
+#cloud {
+  width: 100%;
+  max-width: 320px;
+}
+
+.cloud-link {
+  margin-right: auto;
+}
+
+.cloud-wrapper {
+  width: 112px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(./cloud.svg);
+  background-repeat: no-repeat;
+  background-position-x: 3px;
+  background-position-y: -2px;
+}
+
+.cloud-text {
+  margin-top: 5px;
+}
+
+.container {
+  margin-top: 20px;
 }
 
 ul {
